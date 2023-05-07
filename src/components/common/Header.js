@@ -4,9 +4,7 @@ import Responsive from './Responsive';
 import palette from '../../lib/api/styles/palette';
 
 const HeaderBlock = styled.div`
-	/* position: fixed; */
 	width: 100%;
-	/* background-color: ${palette.gray[0]}; */
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 `;
 
