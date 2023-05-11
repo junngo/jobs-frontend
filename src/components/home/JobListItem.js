@@ -38,7 +38,7 @@ const ItemBlock = styled.div`
 
 const JobListItem = ({ job }) => {
     return (
-			<Link to={`/post/${job.id}`}>
+			<Link to={`/job/${job.id}`}>
 				<ItemBlock>
 					<div className='detail'>
 						{job.storedLogoName &&
@@ -47,10 +47,13 @@ const JobListItem = ({ job }) => {
 							</div>
 						}
 						<div>
-							<h3>{job.companyName}</h3>
+							<h3>{job.jobTitle}</h3>
 							<div className='role'>
-								{job.subDescList.map(subDesc => (
-									<span>{subDesc} </span>
+								<span>
+									{job.companyName}
+								</span>
+								{job.subDescList.map((subDesc, index) => (
+									<span key={index}>{subDesc} </span>
 								))}
 							</div>
 						</div>

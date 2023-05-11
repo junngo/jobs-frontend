@@ -1,4 +1,7 @@
 import client from "./client";
 
-export const readPostsList = () =>
+export const readJobsList = () =>
     client.get('/jobs');
+
+export const readJobDetail = (id) =>
+    client.get(`/job/${id}`);
