@@ -41,8 +41,17 @@ const Header = () => {
 						</Link>
 					</div>
 					<div className='menu'>
-						<Button variant="outlined">Sign In</Button>
-						<Button component={Link} to="/signup" variant="outlined">Sign UP</Button>
+						<Button component={Link} to="/signin" variant="outlined">Sign In</Button>
+						<Button 
+							component={Link}
+							to="/signup"
+							variant="outlined"
+							sx={{
+								marginLeft: 2,
+							}}
+						>
+							Sign UP
+						</Button>
 					</div>
 				</Wrapper>
 			</HeaderBlock>

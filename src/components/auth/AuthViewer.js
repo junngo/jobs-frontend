@@ -17,16 +17,19 @@ import {
 import Copyright from "../common/Copyright";
 
 
-const SignUpPage = ({}) => {
+const AuthViewer = ({ type, onSubmit, slug }) => {
 	const theme = createTheme();
 
 	const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userData = {
+      username: data.get('userName'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+      marketing: data.get('allowExtraEmails'),
+    };
+    onSubmit(userData);
   };
 
 	return (
@@ -45,21 +48,23 @@ const SignUpPage = ({}) => {
           	<LockOutlinedIcon />
           </Avatar>
 					<Typography component="h1" variant="h5">
-            Sign Up
+            {slug}
           </Typography>
 					<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
 						<Grid container spacing={2}>
-							<Grid item xs={12} >
-                <TextField
-                  autoComplete="user-name"
-                  name="userName"
-                  required
-                  fullWidth
-                  id="userName"
-                  label="User Name"
-                  autoFocus
-                />
-              </Grid>
+              {type ==="signup" && (
+							  <Grid item xs={12} >
+                  <TextField
+                    autoComplete="user-name"
+                    name="userName"
+                    required
+                    fullWidth
+                    id="userName"
+                    label="User Name"
+                    autoFocus
+                  />
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -81,12 +86,14 @@ const SignUpPage = ({}) => {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+              {type ==="signup" && (
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox name="allowExtraEmails" value={true} color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid>
+              )}
 						</Grid>
 						<Button
               type="submit"
@@ -94,13 +101,19 @@ const SignUpPage = ({}) => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {slug}
             </Button>
 						<Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/signin" variant="body2">
-                  Already have an account? Sign in
-                </Link>
+                {type === "signup" ? (
+                  <Link href="/signin" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                ) : (
+                  <Link href="/signup" variant="body2">
+                    Sign up for an account
+                  </Link>
+                )}
               </Grid>
             </Grid>
 					</Box>
@@ -111,4 +124,4 @@ const SignUpPage = ({}) => {
 	);
 };
 
-export default SignUpPage;
+export default AuthViewer;

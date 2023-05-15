@@ -3,7 +3,9 @@ import HeaderLayout from './pages/HeaderLayout';
 // import './App.css';
 import Home from './pages/Home';
 import JobDetailPage from './pages/JobDetailPage';
-import SignUpPage from './components/auth/SignUpPage';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Route path='/job/:jobId' element={<JobDetailPage />} />
       </Route>
       <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/signin" element={<SignInPage />} />
     </Routes>
   );
 }
