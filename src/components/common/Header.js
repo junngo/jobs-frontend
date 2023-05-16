@@ -30,7 +30,7 @@ const Spacer = styled.div`
 	height: 4rem;
 `
 
-const Header = () => {
+const Header = ({ user, onLogout }) => {
 	return (
 		<>
 			<HeaderBlock>
@@ -41,17 +41,24 @@ const Header = () => {
 						</Link>
 					</div>
 					<div className='menu'>
-						<Button component={Link} to="/signin" variant="outlined">Sign In</Button>
-						<Button 
-							component={Link}
-							to="/signup"
-							variant="outlined"
-							sx={{
-								marginLeft: 2,
-							}}
-						>
-							Sign UP
-						</Button>
+						{ user ? (
+							<Button onClick={onLogout} variant="outlined">Logout</Button>	
+						) : (
+							<>
+								<Button component={Link} to="/signin" variant="outlined">Sign In</Button>
+								<Button 
+									component={Link}
+									to="/signup"
+									variant="outlined"
+									sx={{
+										marginLeft: 2,
+									}}
+								>
+									Sign UP
+								</Button>
+							</>
+						)}
+
 					</div>
 				</Wrapper>
 			</HeaderBlock>

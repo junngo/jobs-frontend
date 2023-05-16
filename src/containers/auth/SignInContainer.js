@@ -9,17 +9,11 @@ const SignInContainer = ({ auth, onSubmit, removeAuth }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		return () => {
-			removeAuth();
-		}
-	}, [])
-
-	useEffect(() => {
-		if (auth.auth) {
-			localStorage.setItem("access", auth.auth.token);
+		if (auth.user) {
+			localStorage.setItem("access", auth.user.token);
 			navigate("/");
 		}
-	}, [auth]);
+	}, [auth, navigate]);
 
 	return (
 		<AuthViewer 
@@ -34,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 	const { auth } = state;
 
 	return {
-			auth
+		auth
 	};
 };
 

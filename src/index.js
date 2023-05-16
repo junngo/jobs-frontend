@@ -9,17 +9,14 @@ import rootReducer from './modules';
 import { actionCreators } from "./modules/auth"
 
 
-
-
 const store = configureStore({
   reducer: rootReducer
 });
 
 const loadUser = () => {
   try {
-    const user = localStorage.getItem('access');
-    console.log("in loadUser");
-    if (!user) return;
+    const token = localStorage.getItem('access');
+    if (!token) return;
 
     store.dispatch(actionCreators.checkAuthAction());
 
