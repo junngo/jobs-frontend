@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import Responsive from './Responsive';
 import palette from '../../lib/api/styles/palette';
 
@@ -39,7 +40,19 @@ const Header = () => {
               Jobs Board
 						</Link>
 					</div>
-					<div className='menu'></div>
+					<div className='menu'>
+						<Button component={Link} to="/signin" variant="outlined">Sign In</Button>
+						<Button 
+							component={Link}
+							to="/signup"
+							variant="outlined"
+							sx={{
+								marginLeft: 2,
+							}}
+						>
+							Sign UP
+						</Button>
+					</div>
 				</Wrapper>
 			</HeaderBlock>
 			<Spacer />
