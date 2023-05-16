@@ -16,7 +16,6 @@ const ListWrapper = styled.div`
 `;
 
 const HomeViewer = ({ jobs }) => {
-	console.log(jobs)
 	return (
 		<HomeBlock>
 			<Title>

@@ -8,11 +8,13 @@ const SIGN_UP = 'auth/SIGN_UP';
 const SIGN_IN = 'auth/SIGN_IN';
 const UNLOAD_AUTH = 'auth/UNLOAD_AUTH';
 const CHECK_AUTH = 'auth/CHECK_AUTH';
+const LOGOUT = 'auth/LOGOUT';
 
 
 // action creator
 export const unloadAuth = () => ({ type: UNLOAD_AUTH });
 export const checkAuth = () => ({ type: CHECK_AUTH });
+export const logout = () => ({ type: LOGOUT });
 
 
 // API Actions
@@ -52,6 +54,17 @@ const checkAuthAction = () => async dispatch => {
 	}
 }
 
+const logoutAction = () => async dispatch => {
+	try {
+		localStorage.removeItem("access");
+		dispatch({
+			type: LOGOUT,
+		})
+	} catch(e) {
+		throw e;
+	}
+}
+
 
 // init state
 const initialState = {
@@ -69,15 +82,20 @@ const auth = handleActions(
 		}),
 		[SIGN_IN]: (state, action) => ({
 			...state,
-			auth: action.payload,
+			user: action.payload,
 		}),
 		[UNLOAD_AUTH]: (state, action) => ({
+			...state,
 			auth: null,
 		}),
 		[CHECK_AUTH]: (state, action) => ({
 			...state,
-			auth: {user: action.payload},
+			user: action.payload,
 		}),
+		[LOGOUT]: (state, action) => ({
+			...state,
+			user: null,
+		})
 	},
 	initialState
 );
@@ -88,6 +106,7 @@ export const actionCreators = {
 	signUpAction,
 	signInAction,
 	checkAuthAction,
+	logoutAction,
 };
 
 export default auth;
